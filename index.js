@@ -16,24 +16,29 @@ fetch("https://striveschool-api.herokuapp.com/books" )
         newColumn.classList.add("col","col-12","c ol-md-6","col-lg-4")
         newColumn.innerHTML = `
         <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="${book.img}" class="card-img-top" alt="image">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">${book.title} </h5>
+                <p class="card-text">${book.price}$</p>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
         <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="#" class="btn btn-danger" onklick="removeBook(event)">Delete/a>
+            <a href="#" class="btn btn-success">Add to basket</a>
         </div>
     </div>
-`
-    });
+    `
+    const row = document.getElementById("books-data")
+    row.appendChild(newColumn)
+
+    })
 })
+
 .catch(error =>{
     console.log("error",error)
 })
+
+const removeBook = function(e){
+    console.log("rimuovi libro", e.target)
+    
+    e.target.closest(".card").classList.add("d-none")
+}
